@@ -1,1 +1,1 @@
-This directory should only contain final figures for publication. Note that the contents are not committed to the github repo by default.
+Contents are not committed to the github repo by default.
