@@ -1,4 +1,8 @@
 Data/*
 Outputs/*
 Figures/*
+STEPLC_report_files/*
+STEPLC_report.html
+README.html
 !*.md
+/.quarto/
