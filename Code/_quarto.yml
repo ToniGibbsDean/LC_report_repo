@@ -1,0 +1,13 @@
+title: "Learning Collaborative Report: August 2024"
+date: now
+date-format: long
+title-block-banner: true
+format: pdf
+execute:
+    echo: false
+project: 
+    output-dir: Outputs
+    execute-dir: file
+
+
+
