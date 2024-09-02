@@ -4,9 +4,9 @@ library(terra)
 library(tidyterra)
 
 # load spatial data
-svi<-terra::rast("/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/svi.tif")
-towns<-terra::vect("/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/towns")
-zip<-terra::vect("/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Data/zip")
+svi<-terra::rast("Data/svi.tif")
+towns<-terra::vect("Data/towns")
+zip<-terra::vect("Data/zip")
 
 # load clinical data
 dat_temp <- read.csv("Data/RedCapData-LC-Allvariable.csv")
