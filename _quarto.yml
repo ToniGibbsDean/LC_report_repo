@@ -6,5 +6,5 @@ format: pdf
 execute:
     echo: false
 project: 
-    output-dir: ../Outputs
+    output-dir: Outputs
     execute-dir: file

@@ -15,9 +15,15 @@ renv::restore()
 
 This will ensure the right packages are installed, but may take a little time to run first time around. 
 
-The .qmd file sources all other (r) files to produce the final .pdf. As such, you can simply run this file and it will produce the .pdf report. Keyboard shortcut for mac's to run the .qmd is command+shift+k - you will find the file in outputs.
+After this you must save all of the data to the Data directory 
+- patient files: LHN & STEP - PhoneScreen and CONSORT Data V2.xlsx; and RedCapData-LC-Allvariable.csv (make sure the names remain consistent with the terminology written here even if the data is newly downloaded from patient records)
+- spatial data files: town file, zip file, svi.tif
 
-The file structure of this repo is important to maintain. The r scripts sit in the code directory, whereas the markdown docs (.qmd and .yml) sit in the main directory. This is a necessary because markdown opens a terminal automatically in the main directory when running. You can control the formatting/titles etc., using the .yml
+The STEPLC_report.qmd file sources all other (r) files to produce the final .pdf. As such, you can then simply run this file and it will produce the .pdf report. Keyboard shortcut for mac's to run the .qmd is command+shift+k
+
+The file structure of this repo is important to maintain. The r scripts sit in the code directory, whereas the markdown docs (.qmd and .yml) sit in the main directory. 
+
+You can control the formatting/titles etc., using the .yml, also found in the main directory. 
 
 ## Outputs
-The .pdf will be outputted in the output directory. Using the standard approach, the code chunk outputs are also outputted into a folder that will be created by the markdown script. This can be found in the main directory and will be called STEPLC_report_files > figure-html. This folder will contain all the .png's from the code chunks. 
+The report (STEPLC_report.pdf) can then be found in the Output directory. Using the standard approach, the code chunk outputs are also outputted into a folder that will be created by the markdown script. This can be found in the main directory and will be called STEPLC_report_files > figure-html. This folder will contain all the .png's from the code chunks. 
