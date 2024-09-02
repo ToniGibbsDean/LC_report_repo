@@ -9,7 +9,7 @@ library(ggrepel)
 #####################################################
 # 1) Make Dataframe
 #####################################################
-    dat <- read_excel("/Users/tg625/Documents/PDA/Directory/LC_REPORT/Data/LHN & STEP - PhoneScreen and CONSORT Data V2.xlsx", skip = 1)  %>%
+        dat <- read_excel("Data/LHN & STEP - PhoneScreen and CONSORT Data V2.xlsx", skip = 1)  %>%
                         filter(!is.na(`SCREEN NO.`)) %>%
                         rename(Inqstat = as.factor("INQUIRY STATUS")) %>%
                         rename(Inqdate = "INQUIRY DATE (VOICEMAIL LEFT)") %>%

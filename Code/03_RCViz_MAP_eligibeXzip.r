@@ -9,7 +9,7 @@ towns<-terra::vect("/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outpu
 zip<-terra::vect("/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Data/zip")
 
 # load clinical data
-dat_temp <- read.csv("/Users/tg625/Downloads/Data-LC-Allvariable.csv")
+dat_temp <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 #dat_temp <- dat_full[-c(1,19:22), ]
 datrdce <- dat_temp %>% 
   select("current_zipcode") %>%

@@ -11,8 +11,7 @@ require(ggplotify)
 require(showtext)
 require(ggtext)
 
-dat <- read.csv("/Users/tg625/Downloads/Data-LC-Allvariable.csv")
-
+dat <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 ##################################################################
 #wrangling
 ##################################################################

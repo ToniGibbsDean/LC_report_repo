@@ -15,8 +15,7 @@ library(dplyr)
 library(ggplot2)
 library(stringr)
 
-dat <- read.csv("/Users/tg625/Downloads/Data-LC-Allvariable.csv")
-
+dat <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 
 #dat <- dat_full[-c(1,19:22), ]
 
