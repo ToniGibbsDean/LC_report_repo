@@ -27,7 +27,7 @@ table1
 inquiryRunchart
 ```
 
-## Information about referrers - who made the inquiries?
+## Information about referrers 
 
 ```{r}
 #| label: fig-referrersRoutes

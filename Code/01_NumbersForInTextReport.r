@@ -105,12 +105,12 @@ Ineligible_Text<-dat %>%
     summarise(n=n()) 
 
 PendingActivecases_text<-dat %>%
-                    filter(Inqstat %in% "Pending - active") %>%
+                    filter(Inqstat %in% "Active") %>%
                     group_by(Inqstat) %>%
                     summarise(n=n())
 
 PendingInactivecases_text<-dat %>%
-                    filter(Inqstat %in% "Pending - inactive") %>%
+                    filter(Inqstat %in% "Inactive") %>%
                     group_by(Inqstat) %>%
                     summarise(n=n())
 
