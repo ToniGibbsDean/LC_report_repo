@@ -10,8 +10,6 @@ new <- "#DB6B0B"
 other <- "#F9CA0C"
 purp <- "#b2829c"
 
-ylim = 85
-
 myColours = c("Other" = missing,
               "Unknown" = other,
               "Provider/clinician/agency" = new,
@@ -180,7 +178,6 @@ referrersCommunityPlot <- comm_df %>%
   ) +
   # scale_x_discrete(drop = FALSE) +
   scale_y_discrete(labels = scales::label_wrap(10)) +
-  scale_x_continuous( limits = c(0, ylim), breaks = seq(0, ylim, by = 10) ) +
   guides(fill = guide_legend(nrow = 3)) + 
   scale_fill_manual(name = "heardAboutInititative", values = myColours)
 
@@ -196,7 +193,6 @@ referrersClinicalPlot <- clin_df %>%
   ) +
   # scale_y_discrete(drop = T) +
   # scale_y_discrete(labels = scales::label_wrap(10)) +
-  scale_x_continuous( limits = c(0, ylim), breaks = seq(0, ylim, by = 10) ) +
   guides(fill = guide_legend(nrow = 3)) + 
   scale_fill_manual(name = "heardAboutInititative", values = myColours)
 
@@ -311,7 +307,6 @@ referrersCommunityPlot_elig <- comm_df_elig %>%
   ) +
   # scale_x_discrete(drop = FALSE) +
   scale_y_discrete(labels = scales::label_wrap(10)) +
-  scale_x_continuous( limits = c(0, ylim), breaks = seq(0, ylim, by = 10) ) +
   guides(fill = guide_legend(nrow = 3)) + 
   scale_fill_manual(name = "heardAboutInititative", values = myColours)
 
@@ -327,7 +322,6 @@ referrersClinicalPlot_elig <- clin_df_elig %>%
   ) +
   # scale_y_discrete(drop = T) +
   # scale_y_discrete(labels = scales::label_wrap(10)) +
-  scale_x_continuous( limits = c(0, ylim), breaks = seq(0, ylim, by = 10) ) +
   guides(fill = guide_legend(nrow = 3)) + 
   scale_fill_manual(name = "heardAboutInititative", values = myColours)
 
@@ -335,26 +329,28 @@ referrersClinicalPlot_elig <- clin_df_elig %>%
 
 
 
-# combine plots ####
-# plot1 = referrersCommunityPlot + ggtitle("(a) Community referral nodes") +
-#   theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
-# 
-# plot2 = referrersClinicalPlot + ggtitle("(b) Clinical referral nodes") +
-#   theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
-# 
-# plot3 = referrersCommunityPlot_elig + 
-#   ggtitle("(c) Community referral nodes among eligible people") +
-#   theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
-# 
-# plot4 = referrersClinicalPlot_elig + 
-#   ggtitle("(d) Clinical referral nodes among eligible people") +
-#   theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
+# combine plots
+
+plot1 = referrersCommunityPlot + ggtitle("(a) Community referral nodes") +
+  theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
+
+plot2 = referrersClinicalPlot + ggtitle("(b) Clinical referral nodes") +
+  theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
+
+plot3 = referrersCommunityPlot_elig + 
+  ggtitle("(c) Community referral nodes among eligible people") +
+  theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
+
+plot4 = referrersClinicalPlot_elig + 
+  ggtitle("(d) Clinical referral nodes among eligible people") +
+  theme(plot.title = element_text(size = 10, hjust = 0, lineheight = 1.2) )
 
 
 
 
 legend_labels <- names(myColours)
 legend_colors <- unname(myColours)
+
 
 custom_legend <- ggplot() +
   geom_rect(aes(
@@ -374,25 +370,13 @@ custom_legend <- ggplot() +
   xlim(0, 4) 
 
 
-# Combine_plots <- (plot1 | plot2) / (plot3 | plot4) +
-#   plot_layout(guides = "collect") & theme(legend.position = "none")
-# 
-# Combine_plots_legend <- plot_grid(Combine_plots, custom_legend, ncol = 2, 
-#             rel_heights = c(6, 0.1), rel_widths = c(4, 1))
 
+Combine_plots <- (plot1 | plot2) / (plot3 | plot4) +
+  plot_layout(guides = "collect") & theme(legend.position = "none")
 
-plot1 = plot_grid( referrersCommunityPlot + theme(legend.position = "none"),
-                   custom_legend, ncol = 2, 
-                   rel_heights = c(6, 0.1), rel_widths = c(3, 1))
-plot2 = plot_grid( referrersClinicalPlot + theme(legend.position = "none"),
-                   custom_legend, ncol = 2, 
-                   rel_heights = c(6, 0.1), rel_widths = c(3, 1))
-plot3 = plot_grid( referrersCommunityPlot_elig + theme(legend.position = "none"),
-                   custom_legend, ncol = 2, 
-                   rel_heights = c(6, 0.1), rel_widths = c(3, 1))
-plot4 = plot_grid( referrersClinicalPlot_elig + theme(legend.position = "none"),
-                   custom_legend, ncol = 2, 
-                   rel_heights = c(6, 0.1), rel_widths = c(3, 1))
+Combine_plots_legend <- plot_grid(Combine_plots, custom_legend, ncol = 2, 
+            rel_heights = c(6, 0.1), rel_widths = c(4, 1))
+
 
 
 

@@ -1,19 +1,17 @@
-rm()
 
 ##################################################################
 # packages and data
 ##################################################################
 
-require(tidyverse)
-require(lubridate, warn.conflicts = FALSE)
-require(fmsb)
-require(dplyr)
-require(patchwork)
-require(ggplotify)
 
-dat <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 
+dat_raw <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 #dat <- dat_full[-c(1,19:22), ]
+dat <- dat_raw %>%
+  dplyr::filter(!grepl("TEST", record_id)) %>%
+  filter(redcap_event_name == "baseline_arm_1") %>%
+  filter(grepl("^\\w{2}_\\w{2,3}$", record_id))
+
 
 ##################################################################
 #wrangling
@@ -22,14 +20,19 @@ dat <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 # Remove the first and third rows from the mtcars dataset
 
 nPeople<-dat %>%
-  `[`(129:139) %>%
+  select(suicidal_ideation, suicide_attempts, nonsuicidal_selfinjury, 
+          suicide_complete, legal_issues, jail_prison, 
+          nights_jail_prison, court_ordered_treatment, violent_ideation, 
+          violent_behavior, harmed_attack_assaulted) %>%
   nrow()
 
 
 plotdat<-dat %>%
-  `[`(129:139) %>%
-  #mutate(totalP = nrow(.)) %>%
-   pivot_longer(cols = suicidal_ideation:harmed_attack_assaulted, values_to = "value",
+  select(suicidal_ideation, suicide_attempts, nonsuicidal_selfinjury, 
+         suicide_complete, legal_issues, jail_prison, 
+         nights_jail_prison, court_ordered_treatment, violent_ideation, 
+         violent_behavior, harmed_attack_assaulted) %>%
+  pivot_longer(cols = suicidal_ideation:harmed_attack_assaulted, values_to = "value",
                names_to = "allVs") %>%
   filter(value==1) %>%
   group_by(allVs) %>%
@@ -105,8 +108,3 @@ gg2_bar <- gg1 + geom_text(aes(label = bar_text),
                        colour="white",
                        size = 4)
 
-#################################################
-#save
-#################################################
-
-#ggsave(gg2_bar, filename = "/Users/tg625/Documents/PDA/Directory/LC_REPORT/Figures/suicide_violence_legal_barchart.pdf")

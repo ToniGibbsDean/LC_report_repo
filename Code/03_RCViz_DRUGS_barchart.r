@@ -2,23 +2,22 @@
 # packages and data
 ##################################################################
 
-require(tidyverse)
-require(lubridate, warn.conflicts = FALSE)
-require(fmsb)
-require(dplyr)
-require(patchwork)
-require(ggplotify)
-require(showtext)
-require(ggtext)
+dat_raw <- read.csv("Data/RedCapData-LC-Allvariable.csv")
+#dat <- dat_full[-c(1,19:22), ]
+dat <- dat_raw %>%
+  dplyr::filter(!grepl("TEST", record_id)) %>%
+  filter(redcap_event_name == "baseline_arm_1") %>%
+  filter(grepl("^\\w{2}_\\w{2,3}$", record_id))
 
-dat <- read.csv("Data/RedCapData-LC-Allvariable.csv")
+
 ##################################################################
 #wrangling
 ##################################################################
 
 plotdat <- dat %>%
-  `[`(244:256) %>%
-  #drop_na() %>%
+  select(tobacco, vape, alcohol, mj_thc, cocaine, 
+         opiates, pcp, amphet, mdma, ghb_rohypnol, 
+         huffing, hallucinogens, other) %>%
   mutate(across(everything(), ~replace(., . ==  888, 0)))  %>%
   rownames_to_column("person") %>%
   as_tibble %>%
@@ -114,8 +113,6 @@ gg2_drugsbar <- gg1 + geom_text(aes(label = bar_text),
                        colour="white",
                        size = 2)
 
-##################################################################
-#Save
-##################################################################
 
-#ggsave(gg2_drugsbar, filename = "/Users/tg625/Documents/PDA/Directory/LC_REPORT/Figures/drugsXuse_barchart.pdf")
+
+
